@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import com.cognixia.controller.DollarsController;
 import com.cognixia.model.Account;
+import com.cognixia.model.Customer;
 import com.cognixia.model.Transaction;
 
 public class DollarsBankApp {
@@ -32,8 +33,11 @@ public class DollarsBankApp {
 
 			} else if (selection == 2) {
 				login();
-			} else {
+			} else if (selection == 3) {
+				System.out.println("Thank you for using Dollars Bank,");
+				System.out.println("Goodbye!");
 
+				exit = true;
 			}
 		}
 		input.close();
@@ -50,11 +54,11 @@ public class DollarsBankApp {
 		int index = controller.isRegistered(id, password);
 		while (index != -1) {
 
-			displayOptions(index);
+			index = displayOptions(index);
 		}
 	}
 
-	private static void displayOptions(int index) {
+	private static int displayOptions(int index) {
 		// TODO Auto-generated method stub
 		System.out.println("Welcome!\n");
 		System.out.println("1. Deposit");
@@ -80,12 +84,28 @@ public class DollarsBankApp {
 			transactions();
 			break;
 		case 5:
+			account(index);
 			break;
 		case 6:
-			break;
+			// sets index to -1 and signs the user out
+			return -1;
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + choice);
 		}
+		return index;
+	}
+
+	private static void account(int index) {
+		// TODO Auto-generated method stub
+		System.out.println("Account Info:");
+		Account account = controller.getAccounts().get(index);
+		Customer customer = account.getCustomer();
+		System.out.println("Name on Account: " + customer.getName());
+		System.out.println("Address: " + customer.getAddress());
+		System.out.println("Phone Number: " + customer.getPhone());
+		System.out.println("User ID: " + account.getId());
+		System.out.println("Balance: " + account.getBalance());
+
 	}
 
 	private static void transactions() {
@@ -108,6 +128,10 @@ public class DollarsBankApp {
 
 		double amount = input.nextInt();
 		input.nextLine();
+		if (amount > account.getBalance()) {
+			System.out.println("Insufficient Funds");
+			return;
+		}
 
 		System.out.println("Which user?");
 
@@ -132,6 +156,10 @@ public class DollarsBankApp {
 
 		double amount = input.nextInt();
 		input.nextLine();
+		if (amount > account.getBalance()) {
+			System.out.println("Insufficient Funds");
+			return;
+		}
 
 		account.setBalance(account.getBalance() - amount);
 		transactions.add(new Transaction(transactions.size(), "Withdrawl", amount));

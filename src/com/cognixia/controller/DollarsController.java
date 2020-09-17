@@ -9,6 +9,12 @@ import com.cognixia.model.Customer;
 public class DollarsController {
 	List<Account> accounts = new ArrayList<>();
 
+	public DollarsController() {
+		accounts.add(
+				new Account("M001", "password", 2000, new Customer("Mathias Taylor", "22 maple st", "3067011111")));
+		accounts.add(new Account("J001", "password", 400, new Customer("Johnny", "21 maple st", "3067011911")));
+	}
+
 	public List<Account> getAccounts() {
 		return accounts;
 	}
@@ -17,7 +23,6 @@ public class DollarsController {
 		Account newAccount = new Account(id, password, balance, new Customer(name, address, number));
 		// add it to storage
 		accounts.add(newAccount);
-		System.out.println(accounts.get(0));
 	}
 
 	public int isRegistered(String ID, String password) {
@@ -32,6 +37,7 @@ public class DollarsController {
 			}
 			index++;
 		}
+		System.out.println("Not registered");
 		return -1;
 	}
 }
