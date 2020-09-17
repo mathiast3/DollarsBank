@@ -96,7 +96,7 @@ public class DollarsBankApp {
 	}
 
 	private static void account(int index) {
-		// TODO Auto-generated method stub
+		// Displays account info
 		System.out.println("Account Info:");
 		Account account = controller.getAccounts().get(index);
 		Customer customer = account.getCustomer();
@@ -109,7 +109,7 @@ public class DollarsBankApp {
 	}
 
 	private static void transactions() {
-		// TODO Auto-generated method stub
+		// Displays last 5 transactions
 		System.out.println("Last 5 Transactions:");
 		int size = transactions.size();
 		for (int i = size - 1; i >= (size - 5) && i >= 0; i--) {
@@ -120,7 +120,7 @@ public class DollarsBankApp {
 	}
 
 	private static void transfer(int index) {
-		// TODO Auto-generated method stub
+		// Transfers
 		List<Account> accounts = controller.getAccounts();
 		Account account = accounts.get(index);
 		System.out.println("Your balance is " + account.getBalance());
@@ -149,7 +149,7 @@ public class DollarsBankApp {
 	}
 
 	private static void withdrawl(int index) {
-		// TODO Auto-generated method stub
+		// Withdrawl money
 		Account account = controller.getAccounts().get(index);
 		System.out.println("Your balance is " + account.getBalance());
 		System.out.println("How much would you like to withdrawl?");
@@ -167,7 +167,7 @@ public class DollarsBankApp {
 	}
 
 	private static void deposit(int index) {
-		// TODO Auto-generated method stub
+		// Deposit
 		System.out.println("How much would you like to deposit?");
 		double amount = input.nextInt();
 		input.nextLine();
@@ -179,7 +179,7 @@ public class DollarsBankApp {
 	}
 
 	private static void createAccount() {
-		// TODO Auto-generated method stub
+		// Create account
 		System.out.println("Create Account\n");
 		System.out.println("Customer Name:");
 		String name = input.nextLine();
