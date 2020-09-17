@@ -60,7 +60,7 @@ public class DollarsBankApp {
 
 	private static int displayOptions(int index) {
 		// TODO Auto-generated method stub
-		System.out.println("Welcome!\n");
+		System.out.println("\nHello, " + controller.getAccounts().get(index).getCustomer().getName());
 		System.out.println("1. Deposit");
 		System.out.println("2. Withdrawl");
 		System.out.println("3. Funds Transfer");
@@ -126,7 +126,7 @@ public class DollarsBankApp {
 		System.out.println("Your balance is " + account.getBalance());
 		System.out.println("How much would you like to transfer?");
 
-		double amount = input.nextInt();
+		double amount = input.nextDouble();
 		input.nextLine();
 		if (amount > account.getBalance()) {
 			System.out.println("Insufficient Funds");
@@ -154,7 +154,7 @@ public class DollarsBankApp {
 		System.out.println("Your balance is " + account.getBalance());
 		System.out.println("How much would you like to withdrawl?");
 
-		double amount = input.nextInt();
+		double amount = input.nextDouble();
 		input.nextLine();
 		if (amount > account.getBalance()) {
 			System.out.println("Insufficient Funds");
